@@ -7,6 +7,11 @@ set omnifunc=syntaxcomplete#Complete
 call pathogen#infect()
 call pathogen#helptags()
 
+syntax enable
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
+
 set encoding=utf-8
 set mouse=a
 set ai
@@ -17,11 +22,10 @@ set t_Co=256
 set cursorline
 set whichwrap+=<,>,h,l,[,]
 
-hi CursorLine term=bold cterm=bold guibg=Grey40
-
 set splitright
 set autochdir
 
+set background=dark
 set backspace=indent,eol,start
 
 set undofile		" keep an undo file (undo changes after closing)
@@ -105,9 +109,6 @@ packadd matchit
 " Display the number of each line
 set number
 
-" color kit for background color dark allow to display the bright color
-set background=dark
-
 " 4 spaces tabulation
 set tabstop=4
 set shiftwidth=4
@@ -128,11 +129,13 @@ let mapleader = ","
 
 nnoremap <leader>v 			<C-w>v
 nnoremap <leader>h 			<C-w>s
+nnoremap <leader>c 			:Gcommit<Cr>
 nnoremap <leader>s 			:Gstatus<Cr>
+nnoremap <leader>d 			:Gdiff<Cr>
 nnoremap <leader>, 			<C-w>w
 nnoremap <leader><space> 	:nohlsearch<CR>
 nnoremap <leader>r 			:source ~/.vimrc<CR>
-nnoremap <leader>q 			:wq<Cr>
+nnoremap <leader>q 			:q<Cr>
 
 " Ctrl keymap
 noremap <C-u>				<C-r>
@@ -140,6 +143,8 @@ noremap <C-n>				:!norminette **/*.{c,h}<CR>
 noremap <C-q>				:wq<Cr>
 noremap <C-s>				:w!<Cr>
 noremap <silent>	<C-q>	:qa<CR>
+map 	<C-h> 				:NERDTreeFind<Cr>
+map		<C-g>				:NERDTreeToggle<CR>
 
 " Shift Keymap
 noremap <S-Right>			<C-w><Right>
@@ -147,3 +152,51 @@ noremap <S-Left>			<C-w><Left>
 noremap <S-Up>				<C-w><Up>
 noremap <S-Down>			<C-w><Down>
 
+"set statusline=%{fugitive#statusline()}
+"set statusline+=%f
+"set statusline+=%=
+"set statusline+=%l
+"set statusline+=/
+"set statusline+=%L
+
+" NerdTree
+"  How can I open a NERDTree automatically when vim starts up if no files were
+"  specified?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"  How can I open NERDTree automatically when vim starts up on opening a
+"  directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+"  How can I close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden=1
+
+"autocmd VimEnter * call s:openNERDTree()
+"autocmd BufCreate * call s:openNERDTree()
+"function! s:openNERDTree()
+"	NERDTree
+"	NERDTreeToggle
+"endfunction
+
+" Syntastic
+let g:syntastic_cpp_compiler = 'gcc'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++ -Wall -Werror -Wextra'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+let g:syntastic_cpp_check_header=1
+let g:syntastic_cpp_remove_include_errors=1
+let g:syntastic_c_remove_include_errors=1
+let g:syntastic_c_include_dirs = ['../../../include', '../../include','../include','./include']
+
+let g:syntastic_c_checkers=['syntastic-c-gcc']
+
+let g:airline#extensions#tabline#enabled=1
+
+" display indentation guides
+set list listchars=tab:\|\ ,trail:·,precedes:←,extends:→,nbsp:␣
