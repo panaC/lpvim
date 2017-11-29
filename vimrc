@@ -136,6 +136,11 @@ nnoremap <leader>, 			<C-w>w
 nnoremap <leader><space> 	:nohlsearch<CR>
 nnoremap <leader>r 			:source ~/.vimrc<CR>
 nnoremap <leader>q 			:q<Cr>
+nnoremap <leader>w 			:w!<Cr>
+nnoremap <leader>j 			:Stdheader<Cr>
+nnoremap <leader>k 			i#include 
+
+
 
 " Ctrl keymap
 noremap <C-u>				<C-r>
@@ -200,3 +205,6 @@ let g:airline#extensions#tabline#enabled=1
 
 " display indentation guides
 set list listchars=tab:\|\ ,trail:·,precedes:←,extends:→,nbsp:␣
+
+" You complete Me
+let g:ycm_confirm_extra_conf = 0
