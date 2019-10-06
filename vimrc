@@ -143,6 +143,7 @@ nnoremap <leader>t			:tabNext<Cr>
 map		 <leader>/			:s/^/\/\//<Cr>:nohlsearch<CR>
 map		 <leader>\			:s/^\/\///<Cr>
 nohlsearch
+nnoremap <leader>k 			i#include 
 
 " Ctrl keymap
 noremap <C-u>				<C-r>
@@ -207,3 +208,6 @@ let g:airline#extensions#tabline#enabled=1
 
 " display indentation guides
 set list listchars=tab:\|\ ,trail:·,precedes:←,extends:→,nbsp:␣
+
+" You complete Me
+let g:ycm_confirm_extra_conf = 0
