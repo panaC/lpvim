@@ -104,7 +104,7 @@ endif
 "
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
-packadd matchit
+" packadd matchit
 
 " Display the number of each line
 set number
@@ -133,9 +133,16 @@ nnoremap <leader>c 			:Gcommit<Cr>
 nnoremap <leader>s 			:Gstatus<Cr>
 nnoremap <leader>d 			:Gdiff<Cr>
 nnoremap <leader>, 			<C-w>w
-nnoremap <leader><space> 	:nohlsearch<CR>
-nnoremap <leader>r 			:source ~/.vimrc<CR>
+nnoremap <leader><space> 	:nohlsearch<Cr>
+nnoremap <leader>r 			:source ~/.vimrc<Cr>
 nnoremap <leader>q 			:q<Cr>
+nnoremap <leader>j 			:Stdheader<Cr>
+nnoremap <leader>w 			:w!<Cr>
+nnoremap <leader>l 			i#include <string.h><Cr>
+nnoremap <leader>t			:tabNext<Cr>
+map		 <leader>/			:s/^/\/\//<Cr>:nohlsearch<CR>
+map		 <leader>\			:s/^\/\///<Cr>
+nohlsearch
 
 " Ctrl keymap
 noremap <C-u>				<C-r>
@@ -194,7 +201,7 @@ let g:syntastic_cpp_remove_include_errors=1
 let g:syntastic_c_remove_include_errors=1
 let g:syntastic_c_include_dirs = ['../../../include', '../../include','../include','./include']
 
-let g:syntastic_c_checkers=['syntastic-c-gcc']
+" let g:syntastic_c_checkers=['syntastic-c-gcc']
 
 let g:airline#extensions#tabline#enabled=1
 
